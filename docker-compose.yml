@@ -1,0 +1,11 @@
+version: "3"
+services:
+  nest:
+    container_name: nest-app
+    restart: always
+    build: ./mail-app
+    environment: 
+      - env_var_name="ddgsgsgs" # here it is
+    ports:
+      - "3000:3000"
+    command: npm start
