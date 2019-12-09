@@ -1,9 +1,14 @@
 import { Injectable } from '@nestjs/common';
-
+import MessageModel from './schema/message.schema'
 @Injectable()
 export class MessagesService {
-	sendMessage() {
-		//saveMessageToBD
-		//sendMessage
+	async saveMessage(message): Promise<any>{
+		try {
+			const savedMessage = await new MessageModel(message).save();
+			return savedMessage;
+		}
+		catch(err){
+			console.log(err);
+		}
 	}	
 }

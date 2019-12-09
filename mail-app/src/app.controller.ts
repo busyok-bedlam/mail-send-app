@@ -1,4 +1,4 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Body, Post } from '@nestjs/common';
 import { AppService } from './app.service';
 import { ConfigService } from './config/config.service';
 
@@ -9,9 +9,14 @@ export class AppController {
 			private readonly config: ConfigService
 	) {}
 
-  @Get("send-message")
-  getHello(): string {
-		const data = this.config.get("DOMAIN")
-    return data;
-  }
+  @Post("send-message")
+	async	sendMessage(@Body() messageBody) {
+		try {
+			await appService.sendMessage(messageBody);
+			console.log('Success');
+		}
+		catch(err) {
+			console.log(err);
+		}
+	}
 }
