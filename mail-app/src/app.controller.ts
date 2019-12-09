@@ -14,14 +14,10 @@ export class AppController {
 	@UsePipes(new ValidationPipe())
 	async	sendMessage(@Body() messageBody) {
 		try {
-			debugger;
-			console.log('messageBody', messageBody);
 			await this.appService.sendMessage(messageBody);
-
-			console.log('Success');
 		}
 		catch(err) {
-			console.log(err);
+			throw err;
 		}
 	}
 }

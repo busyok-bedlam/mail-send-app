@@ -9,13 +9,10 @@ export class AppService {
 	}
 	async sendMessage(message): Promise<any>{
 		try {
-			console.log('PreSend message', message);
-			const savedMessage = await this.messageService.saveMessage(message);
-			console.log('message saved and sended');
-
+			await this.messageService.saveMessage(message);
 		}
 		catch(err){
-			console.log(err)
+			throw err;
 		}
 	}
 }

@@ -11,12 +11,11 @@ export class MessagesService {
 	};
 	async saveMessage(message): Promise<any>{
 		try {
-			console.log('MESSAGE',message);
 			const savedMessage = await new this.messageModel(message).save();
 			return savedMessage;
 		}
 		catch(err){
-			console.log(err);
+			throw err;
 		}
 	}	
 }
