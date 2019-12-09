@@ -1,4 +1,5 @@
 import { Controller, Get, Body, Post } from '@nestjs/common';
+import { ValidationPipe, UsePipes } from '@nestjs/common';
 import { AppService } from './app.service';
 import { ConfigService } from './config/config.service';
 
@@ -10,9 +11,13 @@ export class AppController {
 	) {}
 
   @Post("send-message")
+	@UsePipes(new ValidationPipe())
 	async	sendMessage(@Body() messageBody) {
 		try {
-			await appService.sendMessage(messageBody);
+			debugger;
+			console.log('messageBody', messageBody);
+			await this.appService.sendMessage(messageBody);
+
 			console.log('Success');
 		}
 		catch(err) {

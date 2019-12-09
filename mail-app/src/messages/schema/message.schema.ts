@@ -1,7 +1,7 @@
 import * as mongoose from 'mongoose';
 
 const UserSchema = new mongoose.Schema({
-	email:{
+	email: {
 		type: String,
 		required: true
 	},
@@ -11,7 +11,7 @@ const UserSchema = new mongoose.Schema({
 	}
 });
 
-const MessageSchema = new mongoose.Schema({
+export const MessageSchema = new mongoose.Schema({
 	theme: {
 		type: String,
 		required: true
@@ -21,18 +21,19 @@ const MessageSchema = new mongoose.Schema({
 		required: true
 	},
 	sender: UserSchema,
-	receivers: {
+	receiver: {
 		type: UserSchema,
 		required: true
 	},
 	carbonCopy: {
 		type: [UserSchema],
-		required: false
+		required: false,
+		default: null
 	},
 	blindCarbonCopy: {
 		type: [UserSchema],
-		required: false
+		required: false,
+		default: null
 	} 
 })
 
-export default mongoose.model('Message', MessageSchema);
